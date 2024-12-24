@@ -9,21 +9,21 @@ export default function SideNavigation() {
   const pathname = usePathname()
 
   return (
-    <div className="md:z-auto z-20 sticky top-0 lg:w-16 md:w-24 shrink-0 md:h-screen overflow-y-auto no-scrollbar md:border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 md:bg-transparent md:dark:bg-transparent">
+    <div className="md:z-auto z-20 sticky top-0 lg:w-16 md:w-24 shrink-0 md:h-screen no-scrollbar">
       <div className="h-full flex md:flex-col justify-between after:flex-1 after:mt-auto">
         <div className="flex-1">
           {pathname !== '/' && (
-            <div className="flex justify-center my-4">
-              <Link href="/">
-                <Image className="rounded-full" src={HeroImage} width={32} height={32} priority alt="Me" />
+            <div className="flex justify-center md:my-4">
+              <Link href="/" className="absolute top-5 left-5 md:static">
+                <Image className="rounded-full" src={HeroImage} width={48} height={48} priority alt="Me" />
               </Link>
             </div>
           )}
         </div>
-        <div className="flex-1 grow flex items-center">
+        <div className="flex-1 grow flex items-center rounded-lg shadow-lg dark:shadow-slate-900 bg-white dark:bg-slate-800">
           <nav className="w-full">
-            <ul className="md:space-y-4 md:block flex justify-center gap-4">
-              <li className="py-2">
+            <ul className="md:space-y-4 md:block flex justify-center gap-8">
+              <li className="md:py-2">
                 <Link
                   href="/"
                   className={
@@ -39,7 +39,7 @@ export default function SideNavigation() {
                   </svg>
                 </Link>
               </li>
-              <li className="py-2">
+              <li className="md:py-2">
                 <Link
                   href="/about"
                   className={
@@ -55,7 +55,7 @@ export default function SideNavigation() {
                   </svg>
                 </Link>
               </li>
-              <li className="py-2">
+              <li className="md:py-2">
                 <Link
                   href="/resume"
                   className={`py-5 md:py-auto w-full h-6 flex items-center justify-center relative after:absolute after:h-0.5 after:left-0 md:after:h-auto md:after:left-auto md:after:w-0.5 after:right-0 md:after:top-0 after:bottom-0 ${pathname === '/resume'
