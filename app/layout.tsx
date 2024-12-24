@@ -6,10 +6,13 @@ import Theme from './theme-provider'
 import SideNavigation from '@/components/ui/side-navigation'
 import Header from '@/components/ui/header'
 
+import clsx from 'clsx';
+
 import Script from 'next/script'
 
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Footer from '@/components/ui/footer'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -55,7 +58,13 @@ export default function RootLayout({
       <Analytics />
       <SpeedInsights />
 
-      <body className={`${inter.variable} ${aspekta.variable} font-inter antialiased bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200 tracking-tight`}>
+      <body className={clsx(
+        inter.variable,
+        aspekta.variable,
+        'font-inter antialiased bg-white bg-gradient-to-r from-white to-slate-200 text-slate-800',
+        'dark:bg-slate-900 dark:text-slate-200 dark:bg-gradient-to-r dark:from-slate-900 dark:to-slate-800',
+        'tracking-tight'
+      )}>
         <Theme>
           <div className="max-w-7xl mx-auto">
             <div className="min-h-screen flex md:flex-row flex-col">
@@ -66,6 +75,8 @@ export default function RootLayout({
                   <Header />
 
                   {children}
+
+                  <Footer />
                 </div>
               </main>
             </div>
