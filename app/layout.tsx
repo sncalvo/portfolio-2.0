@@ -58,21 +58,16 @@ export default function RootLayout({
       <body className={`${inter.variable} ${aspekta.variable} font-inter antialiased bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200 tracking-tight`}>
         <Theme>
           <div className="max-w-7xl mx-auto">
-            <div className="min-h-screen flex">
-
+            <div className="min-h-screen flex md:flex-row flex-col">
               <SideNavigation />
 
-              { /* Main content */}
               <main className="grow overflow-hidden px-6">
                 <div className="w-full h-full max-w-[1072px] mx-auto flex flex-col">
-
                   <Header />
 
                   {children}
-
                 </div>
               </main>
-
             </div>
           </div>
         </Theme>

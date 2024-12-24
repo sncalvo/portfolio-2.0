@@ -9,8 +9,8 @@ export default function SideNavigation() {
   const pathname = usePathname()
 
   return (
-    <div className="sticky top-0 w-16 md:w-24 shrink-0 h-screen overflow-y-auto no-scrollbar border-r border-slate-200 dark:border-slate-800">
-      <div className="h-full flex flex-col justify-between after:flex-1 after:mt-auto">
+    <div className="md:z-auto z-20 sticky top-0 lg:w-16 md:w-24 shrink-0 md:h-screen overflow-y-auto no-scrollbar md:border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 md:bg-transparent md:dark:bg-transparent">
+      <div className="h-full flex md:flex-col justify-between after:flex-1 after:mt-auto">
         <div className="flex-1">
           {pathname !== '/' && (
             <div className="flex justify-center my-4">
@@ -22,11 +22,12 @@ export default function SideNavigation() {
         </div>
         <div className="flex-1 grow flex items-center">
           <nav className="w-full">
-            <ul className="space-y-4">
+            <ul className="md:space-y-4 md:block flex justify-center gap-4">
               <li className="py-2">
                 <Link
                   href="/"
-                  className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 ${pathname !== '/about' && pathname !== '/subscribe' && pathname !== '/projects' && pathname !== '/resume'
+                  className={
+                    `py-5 md:py-auto w-full h-6 flex items-center justify-center relative after:absolute after:h-0.5 after:left-0 md:after:h-auto md:after:left-auto md:after:w-0.5 after:right-0 md:after:top-0 after:bottom-0 ${pathname !== '/about' && pathname !== '/subscribe' && pathname !== '/projects' && pathname !== '/resume'
                       ? 'text-sky-500 after:bg-sky-500'
                       : 'text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400'
                     }`}
@@ -41,10 +42,11 @@ export default function SideNavigation() {
               <li className="py-2">
                 <Link
                   href="/about"
-                  className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 ${pathname === '/about'
-                    ? 'text-sky-500 after:bg-sky-500'
-                    : 'text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400'
-                  }`}                  
+                  className={
+                    `py-5 md:py-auto w-full h-6 flex items-center justify-center relative after:absolute after:h-0.5 after:left-0 md:after:h-auto md:after:left-auto md:after:w-0.5 after:right-0 md:after:top-0 after:bottom-0 ${pathname === '/about'
+                      ? 'text-sky-500 after:bg-sky-500'
+                      : 'text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400'
+                    }`}                  
                 >
                   <span className="sr-only">About</span>
                   <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -53,25 +55,10 @@ export default function SideNavigation() {
                   </svg>
                 </Link>
               </li>
-              {/* <li className="py-2">
-                <Link
-                  href="/projects"
-                  className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 ${pathname === '/projects'
-                    ? 'text-sky-500 after:bg-sky-500'
-                    : 'text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400'
-                    }`}
-                >
-                  <span className="sr-only">Projects</span>
-                  <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                    <path fillOpacity=".16" d="M1 4h18v10H1z" />
-                    <path d="M8 3h4V2H8v1ZM6 3V0h8v3h6v12H0V3h6ZM2 5v8h16V5H2Zm14 13v-2h2v4H2v-4h2v2h12Z" />
-                  </svg>
-                </Link>
-              </li> */}
               <li className="py-2">
                 <Link
                   href="/resume"
-                  className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 ${pathname === '/resume'
+                  className={`py-5 md:py-auto w-full h-6 flex items-center justify-center relative after:absolute after:h-0.5 after:left-0 md:after:h-auto md:after:left-auto md:after:w-0.5 after:right-0 md:after:top-0 after:bottom-0 ${pathname === '/resume'
                     ? 'text-sky-500 after:bg-sky-500'
                     : 'text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400'
                     }`}
@@ -83,21 +70,6 @@ export default function SideNavigation() {
                   </svg>
                 </Link>
               </li>                            
-              {/* <li className="py-2">
-                <Link
-                  href="/subscribe"
-                  className={`w-full h-6 flex items-center justify-center relative after:absolute after:w-0.5 after:right-0 after:top-0 after:bottom-0 ${pathname === '/subscribe'
-                    ? 'text-sky-500 after:bg-sky-500'
-                    : 'text-slate-400 hover:text-slate-500 dark:text-slate-500 dark:hover:text-slate-400'
-                    }`} 
-                >
-                  <span className="sr-only">Say Hi!</span>
-                  <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="21" height="21">
-                    <path fillOpacity=".16" d="m13.4 18-3-7.4-7.4-3L19 2z" />
-                    <path d="M13.331 15.169 17.37 3.63 5.831 7.669l5.337 2.163 2.163 5.337Zm-3.699-3.801L.17 7.53 20.63.37l-7.161 20.461-3.837-9.463Z" />
-                  </svg>
-                </Link>
-              </li> */}
             </ul>
           </nav>
         </div>
