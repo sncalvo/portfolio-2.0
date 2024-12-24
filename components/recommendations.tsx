@@ -1,8 +1,5 @@
 import Image from 'next/image'
 
-import Testimonial03 from '@/public/images/testimonial-03.jpg'
-import Testimonial04 from '@/public/images/testimonial-04.jpg'
-
 export default function Recommendations() {
   return (
     <div className="space-y-8">
@@ -12,7 +9,7 @@ export default function Recommendations() {
         <li className="relative group">
           <div className="flex items-start">
             <div className="absolute left-0 h-14 w-14 flex items-center justify-center dark:border-slate-800 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-800/30 bg-white dark:bg-slate-900 rounded-full">
-              <Image className="rounded-full" src={Testimonial03} width={56} height={56} alt="Testimonial 03" />
+              {/* <Image className="rounded-full" src={Testimonial03} width={56} height={56} alt="Testimonial 03" /> */}
             </div>
             <div className="pl-20 space-y-1">
               <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Mary Christopher</div>
@@ -25,7 +22,7 @@ export default function Recommendations() {
         <li className="relative group">
           <div className="flex items-start">
             <div className="absolute left-0 h-14 w-14 flex items-center justify-center dark:border-slate-800 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-800/30 bg-white dark:bg-slate-900 rounded-full">
-              <Image className="rounded-full" src={Testimonial04} width={56} height={56} alt="Testimonial 04" />
+              {/* <Image className="rounded-full" src={Testimonial04} width={56} height={56} alt="Testimonial 04" /> */}
             </div>
             <div className="pl-20 space-y-1">
               <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Harry Kastelli</div>

@@ -1,0 +1,154 @@
+---
+title: "Amazing new features in React 18"
+publishedAt: "2022-04-08"
+image: "/images/react-18.webp"
+summary: "React 18 is here! With features like smoother concurrent rendering, improved batching, and updated APIs, it’s a game-changer for building faster, more efficient apps. Discover what’s new!"
+---
+
+React 18 was released, and we were eager to jump in and check out what's new in the latest version of this fantastic framework.
+
+![Post](/images/react-18.webp)
+
+## Concurrency
+
+One of the most critical changes is concurrent React. React has updated its rendering model, allowing for better handling of concurrent tasks behind the scenes. It takes the weight of handling complicated rendering logic while allowing for performant concurrent tasks to be held, always providing a functional UI to the end-user without interrupting the main thread.
+
+These concurrent changes are not exactly a feature but rather a shift in the implementation that you can opt-in when you upgrade to React 18.
+
+However, this might be an issue for some libraries you might use. According to the React team, adopting concurrent rendering should be straightforward overall, so libraries should be able to adapt quickly. You can check a partial list of compatible libraries <a href="https://github.com/reactwg/react-18/discussions/113" target="_blank">here</a>.
+
+In the meantime, you can use useTransition and useDeferredValue to implement concurrent features.
+
+The next one is exciting: automatic batching has been improved in React. In React 17 automatic batching would only occur for browser events and hooks. Many significant operations would then miss the benefits of automatic batching.
+
+You can test this on a React 17 app by writing a simple button with two state changes.
+
+```tsx
+const SomeComponent = () => {
+  const [firstState, setFirstState] = useState(0);
+  const [secondState, setSecondState] = useState(0);
+
+  const onButtonClick = () => {
+    setFirstState((prevState) => ++prevState);
+    setSecondState((prevState) => ++prevState);
+  };
+
+  return <button onclick={onButtonClick}>Click Me!</button>
+};
+```
+
+You can test this on this <a href="https://codesandbox.io/s/react-17-h9c290" target="_blank">code sandbox</a>.
+
+If you execute this component, you will see that it will only render once for each click.  However, if we decide to update these states after some async action, you will see that the component will render twice.
+
+```tsx
+const SomeComponent = () => {
+  const [firstState, setFirstState] = useState(0);
+  const [secondState, setSecondState] = useState(0);
+
+  const onButtonClick = async () => {
+    await sleep();
+    setFirstState((prevState) => ++prevState);
+    setSecondState((prevState) => ++prevState);
+  };
+
+  useEffect(() => {
+    secondComponentRenderCount += 1;
+  });
+
+  return <button onclick={onButtonClick}>Click Me!</button>
+};
+```
+
+You can test this on this <a href="http://codesandbox.io/s/react-17-h9c290" target="_blank">code sandbox</a>, and the React 18 counterpart <a href="https://codesandbox.io/s/react-18-5lcxlp" target="_blank">here</a>.
+
+However, in React 18 this is not the case. If you start using the new rendering API (shown later) you will be able to harness the power of automatic batching.
+
+## Transitions and deferred values
+
+React 18 also brings a new concept to the table: transitions. This new feature allows for detailed updates as urgent or non-urgent.
+
+Urgent updates need to be immediate, or the UX will feel off. In contrast, non-urgent can wait and don't need to be direct. You can start using them by wrapping your state change with `startTransition`:
+
+```tsx
+startTransition(() => {
+  setNonUrgetState();
+});
+```
+
+The updates wrapped inside `startTransition` can be interrupted by more urgent updates. You can use this alongside concurrent rendering (shown by the fact that transitions can be interrupted).
+
+For cases where you don't handle the state but rather the value, you can use `useDeferredValue` to wrap the value.
+
+For example, the input will be immediately updated inside the following component. However, the value defferedValue can be delayed to at most 3000 milliseconds (3 seconds):
+
+```tsx
+const SomeComponent = () => {
+  const [input, setInput] = useState(0);
+  const deferredValue = useDeferredValue(input, { timeoutMs: 3000 });
+
+  const handleInputChange = (event) => setInput(event.target.value);
+
+  return (
+    <div>
+      <input value={input} onChange={handleInputChange} />
+      <h4>Slow update: {deferredValue}</h4>
+    </div>
+  );
+};
+```
+
+You can check this out in this <a href="https://codesandbox.io/s/react-18-5lcxlp?file=/src/App.js:723-1087" target="_blank">code sandbox</a>.
+
+## Client and Server rendering API
+
+The last change we will cover, but not least important, is the new Client and Server rendering API.
+
+For react client It adds the method `createRoot` and `hydrateRoot` that replace the previous `ReactDOM.render` and `ReactDOM.hydrate` respectively.
+
+```tsx
+import { createRoot } from "react-dom/client";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(<App />);
+
+// vs
+
+import { render } from "react-dom";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+render(<App />, rootElement);
+```
+
+and
+
+```tsx
+import { hydrate } from "react-dom";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+
+hydrate(<App />, container);
+
+// vs
+
+import { hydrateRoot } from "react-dom/client";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = hydrateRoot(container, <App />);
+```
+
+The purpose of this addition is to allow the use of the previous method for compatibility reasons while also allowing the new React 18 features to be used without causing breaking changes.
+
+These new methods accept an option named `onRecoverableError` as a callback to handle an event for when React recovers from an error during rendering or hydration.
+
+For React DOM Server, we now have `renderToPipeableStream` for streaming Node environments and `renderToReadableStream` for runtimes like Deno and Cloudflare workers. There are also more hooks and additional changes that you can check out in <a href="https://reactjs.org/blog/2022/03/29/react-v18.html" target="_blank">React's blog post</a>.

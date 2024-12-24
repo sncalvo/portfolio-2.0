@@ -1,0 +1,276 @@
+---
+title: "React Context: when we should and should not use it?"
+publishedAt: "2022-09-26"
+image: "/images/react-context.webp"
+summary: "Prop drilling can hinder scalability, while Context simplifies state sharing but may cause performance issues. For larger apps, libraries like Zustand or React Query offer efficient state management. Learn when to use each approach in our blog!"
+---
+
+![Post](/images/react-context.webp)
+
+React is a framework where small components can be generated for everything to abstract the implementation on every screen and improve reusability to follow the DRY principle. It is easy to fall into the trap of drilling in props, and that is definitely not going to scale properly.
+
+Prop drilling leads to very attached components and is prone to errors, making refactors and edits harder than they should.
+
+Let’s see an example of this: 
+ 
+```tsx
+const PropDrillExample: NextPage = () => {
+  const [loggedIn, setLoggedIn] = useState<string | null>(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const onSubmit = () => {
+    // Check email length greater than 0
+    if (email.length === 0) {
+      setError('Email is required');
+      return;
+    }
+
+    // Check password length greater than 0
+    if (password.length === 0) {
+      setError('Password is required');
+      return;
+    }
+
+    // Check email format
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      setError('Email is invalid');
+      return;
+    }
+
+    setLoggedIn(email);
+  };
+
+  return (
+    <div>
+      <Navbar loggedInUser={loggedIn} logOut={() => setLoggedIn(null)} />
+      <div className="flex flex-col gap-2 p-4">
+        <h1 className="text-3xl underline">Prop Drilling Example</h1>
+
+        <h2>{email}</h2>
+
+        <SignInForm
+          onEmailChange={(event) => setEmail(event.target.value)}
+          onPasswordChange={(event) => setPassword(event.target.value)}
+          onSubmit={onSubmit}
+          email={email}
+          password={password}
+          error={error}
+        />
+      </div>
+    </div>
+  );
+};
+```
+
+```tsx
+export const SignInForm = ({
+  onEmailChange,
+  onPasswordChange,
+  onSubmit,
+  email,
+  password,
+  error,
+}: Props) => {
+  return (
+    <Card innerAlignment="vertical">
+      <TextInput name="email" label="Email" value={email} onChange={onEmailChange} error={error} />
+      <TextInput
+        name="password"
+        label="Password"
+        value={password}
+        onChange={onPasswordChange}
+        error={error}
+      />
+      <Button onClick={onSubmit}>Sign In</Button>
+    </Card>
+  );
+};
+```
+
+As you can see, the SignInForm receives a bunch of props that it then sends to the components below. As it stands, it's not that bad, but we can see how this would not scale if we started adding more components to our tree.
+
+## The use case for context
+
+Here is where contexts come in. Contexts allow easy data reading without sending down your hierarchy of components to reach that pesky little Input that needed to check the current theme used for your app.
+
+Using Context allows you to abstract your state logic from your function components (or class components if you prefer).
+
+Here you can check that out: 
+
+```tsx
+const ContextExample: NextPage = () => (
+  {/* This is the context provider that has all the data the children will need*/}
+  <UserProvider>
+    <Navbar />
+    <div className="flex flex-col p-4">
+      <h1 className="text-3xl underline">Context Example</h1>
+
+
+        {/* Context for sign in data */}
+      <SignInContextProvider>
+        <SignInFields />
+      </SignInContextProvider>
+    </div>
+  </UserProvider>
+);
+
+
+// Sign in fields - Note how it does not get any props
+const SignInFields = () => {
+  // Here we read some of that data (useUserStore brings data from the provider
+  const [_, setUser] = useUserStore();
+  const values = useSignInStore();
+  const { email } = values;
+
+  const onSubmit = () => setUser(email);
+
+  return (
+    <Card innerAlignment="vertical">
+      <TextInput name="email" label="Email" />
+      <TextInput name="password" label="Password" />
+      <Button onClick={onSubmit}>Sign In</Button>
+    </Card>
+  );
+};
+```
+
+```tsx
+// Our text input
+export const TextInput = ({ name, label }: Props) => {
+  // here we are reading input values and setters from the sign in context
+  const value = useSignInStore()[name];
+  const onChange = useSignInStore()[`onChange${capitalize(name) as 'Email' | 'Password'}`];
+  const error = useSignInStore().error;
+
+  return (
+    <div className="mb-4">
+      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>
+        {label}
+      </label>
+      <input
+        className={clsx(
+          'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline',
+          error && 'border-red-500'
+        )}
+        id={name}
+        name={name}
+        type="text"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+      {error && <p className="text-red-500 text-xs italic">{error}</p>}
+    </div>
+  );
+};
+```
+
+As you can appreciate, the context is created in the repository linked at the bottom.
+
+Voilà! So clean and elegant. However, there is a big catch (also present with props).
+
+As the example shows, we could use Context to manage the state of a form. It seems like a great idea. Inputs just listen to the nearest context and update the inputs values using the setter methods added to the context — no need to drill those down anymore.
+
+Nonetheless, there is an issue. Whenever you use Context, any component that listens to that context will be updated if any value is updated. If you use a context for your form (without any other setup), you will be updating every single input with every keystroke, even if the user is only editing one of them.
+
+![Post](/images/context-example-1.gif)
+
+Using forms with context is a simple example to get the idea. It is not a significant performance issue. Consider this case with big applications where you might be managing lists of products, and in the same context, you edit a product. All the components listening to that Context, as well as their children, will be re-rendered.
+
+We are not supposed to use Context as a state manager.
+
+## State managers
+
+You might be thinking that React does not solve the essential issue of having a state manager to handle complex client-side logic, and decide to use Angular instead. 
+
+If so, you must remember that React is not a framework like Angular. It is just a library, meaning React will not make assumptions that it does not need to. It will instead let the community make those. And the community has created unique libraries that make the ecosystem great.
+
+We can then rely on a library to manage our state. There are great options like Zustand, Recoil, Redux, and others. We are going to use Zustand for the following examples.
+
+If we implement our context as Zustand stores, we will obtain, with even less footprint, a state for our components that only updates them when necessary. Let’s see: 
+
+```tsx
+const ZustandExample: NextPage = () => (
+  <>
+    <Navbar />
+    <div className="flex flex-col p-4">
+      <h1 className="text-3xl underline">Context Example</h1>
+
+      <SignInForm />
+    </div>
+  </>
+);
+
+export const SignInForm = () => {
+  const setUser = useUserStore(({ setUser }) => setUser);
+  const email = useSignInStore(({ email }) => email);
+
+  const onSubmit = () => setUser(email);
+
+  return (
+    <Card innerAlignment="vertical">
+      <TextInput name="email" label="Email" />
+      <TextInput name="password" label="Password" />
+      <Button onClick={onSubmit}>Sign In</Button>
+    </Card>
+  );
+};
+
+export const TextInput = ({ name, label }: Props) => {
+  const { value, onChange, error } = useSignInStore((store) => ({
+    value: store[name],
+    onChange: store[`onChange${capitalize(name) as 'Email' | 'Password'}`],
+    error: store.error,
+  }));
+
+  return (
+    <div className="mb-4">
+      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>
+        {label}
+      </label>
+      <input
+        className={clsx(
+          'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline',
+          error && 'border-red-500'
+        )}
+        id={name}
+        name={name}
+        type="text"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+      {error && <p className="text-red-500 text-xs italic">{error}</p>}
+    </div>
+  );
+};
+```
+
+As you can see below, the components update way less with this implementation. There are still a few small unnecessary updates due to how we access the inputs, but it’s much better than context.
+
+![Post](/images/context-example-2.gif)
+
+## When state managers are not necessary.
+
+Now, Zustand is excellent. But do we need to go through using a state manager? Since these are very simple examples, we don’t get how much overhead this could be to maintain and expand. However, imagine having to support large multipage forms or keeping the state of your frontend in sync with your backend… that would be a nightmare to do all by hand. 
+
+People have done it before, and for very complex applications, it could make sense. But we need to put the needs of the product first and find what is best to implement things faster and have less overhead to maintain.
+
+To avoid those pains, we can use libraries that focus on preserving the state of those things.
+
+For forms, I recommend using React Hook Form, although there are other great alternatives like Formik and React Final Form.
+
+To maintain state with your server React Query is a great option that is now expanding its core to more libraries also.
+
+Those two are the most common thing you would use a state for, so it should cover the most usual cases. If you need more, Zustand or other state managers are an excellent fit for global states.
+
+
+## Conclusion
+
+You can either use Context, or choose Zustand or other libraries instead. That is a matter of taste. However, there are a few aspects to take into account.
+
+First, Zustand, React Query, and all the libraries out there are not built into React. This means that whenever React comes with a new breaking change, Zustand will need to keep up with it. It is probably not that big of a deal; projects don’t usually leave that much on the edge. Still, this is something worth considering.
+
+Another issue is package size. Sometimes we need to reach users with a bad internet connection, or we need us up to load blazingly fast. It’s worth considering this when you write a new application. If we don’t need a full state manager, we can use Context instead and avoid spending the user’s bandwidth on unnecessary packages. We need to weigh how much this would impact user experience.
+
+Hope you find this guide useful! You can check out more guides and articles <a href="https://eagerworks.com/blog" target="_blank">in our blog</a>, and have a look at all the code for this article in this <a href="https://github.com/sncalvo/state-management-examples" target="_blank">repository</a>.

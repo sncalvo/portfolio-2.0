@@ -1,24 +1,39 @@
 import { getBlogPosts } from '@/components/mdx/utils'
 import Hero from '@/components/hero'
 import PostItem from './post-item'
-import Talks from '@/components/talks'
-import FeaturedProjects from '@/components/featured-projects'
 import WidgetNewsletter from '@/components/widget-newsletter'
-import WidgetSponsor from '@/components/widget-sponsor'
-import WidgetBook from '@/components/widget-book'
+import { Metadata } from 'next'
+import HeroImage from '@/public/images/santi.webp'
 
-export const metadata = {
-  title: 'Home - DevSpace',
-  description: 'Page description',
+const title = 'Santi Calvo - Developer, Speaker, and Engineering Manager @ Eagerworks'
+const description = 'I am a software developer in Uruguay with more than 5 years of experience in a variety of domains. For the past few years, I\'ve focused on driving teams to deliver value to their customers.'
+
+export const metadata: Metadata = {
+  title: 'Santi Calvo',
+  openGraph: {
+    title,
+    description,
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    images: [HeroImage.src],
+    siteName: "Santi Calvo",
+  },
+  twitter: {
+    title,
+    description,
+    site: "@santi_c_dev",
+    images: [HeroImage.src],
+    card: "summary",
+  },
+  description,
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+  },
 }
 
-export default async function Home() {
-  const allBlogs = getBlogPosts();
+const POSTS_LIMIT = 8;
 
-  // Sort posts by date
-  allBlogs.sort((a, b) => {
-    return (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) ? -1 : 1
-  })
+export default async function Home() {
+  const allBlogs = getBlogPosts().slice(0, POSTS_LIMIT);
 
   return (
     <>
@@ -34,41 +49,15 @@ export default async function Home() {
               <section>
                 <h2 className="font-aspekta text-xl font-[650] mb-3">Latest Articles</h2>
 
-                {/* Filters */}
-                <ul className="flex flex-wrap text-sm border-b border-slate-100 dark:border-slate-800">
-                  <li className="px-3 -mb-px">
-                    <a className="block py-3 font-medium text-slate-800 dark:text-slate-100 border-b-2 border-sky-500" href="#0">
-                      Coding
-                    </a>
-                  </li>
-                  <li className="px-3 -mb-px">
-                    <a className="block py-3 text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" href="#0">
-                      Startups
-                    </a>
-                  </li>
-                  <li className="px-3 -mb-px">
-                    <a className="block py-3 text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" href="#0">
-                      Tutorials
-                    </a>
-                  </li>
-                  <li className="px-3 -mb-px">
-                    <a className="block py-3 text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300" href="#0">
-                      Indie Hacking
-                    </a>
-                  </li>
-                </ul>
-
                 {/* Articles list */}
                 <div>
                   {allBlogs.map((post, postIndex) => (
-                      <PostItem key={postIndex} {...post} />
+                    <PostItem key={postIndex} {...post} />
                   ))}
                 </div>
               </section>
-
-              <Talks />
-              <FeaturedProjects />
-
+{/* 
+              <Talks /> */}
             </div>
           </div>
         </div>
@@ -76,14 +65,9 @@ export default async function Home() {
         { /* Right sidebar */}
         <aside className="md:w-[240px] lg:w-[300px] shrink-0">
           <div className="space-y-6">
-
             <WidgetNewsletter />
-            <WidgetSponsor />
-            <WidgetBook />
-
           </div>
         </aside>
-
       </div>
     </>
   )

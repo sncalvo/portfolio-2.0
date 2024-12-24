@@ -1,5 +1,5 @@
 {
-  "name": "devspace-next",
+  "name": "santi-calvo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,6 +16,8 @@
     "@types/node": "^22.10.1",
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.1",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "date-fns": "^4.1.0",
     "next": "15.0.4",
     "next-mdx-remote": "^5.0.0",

@@ -48,7 +48,7 @@ function getMDXData(dir: string) {
       slug,
       content,
     };
-  });
+  }).sort((a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime());
 }
 
 export function getBlogPosts() {
