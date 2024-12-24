@@ -6,7 +6,7 @@ import { Metadata } from 'next'
 import HeroImage from '@/public/images/santi.webp'
 
 const title = 'Santi Calvo - Developer, Speaker, and Engineering Manager @ Eagerworks'
-const description = 'I am a software developer in Uruguay with more than 5 years of experience in a variety of domains. For the past few years, I\'ve focused on driving teams to deliver value to their customers.'
+const description = 'Explore the thoughts and expertise of Santiago Calvo—developer, speaker, and Engineering Manager at Eagerworks. Dive into articles on coding, leadership, and building MVPs, alongside insights on Ruby on Rails, NextJS, and the tech ecosystem. Organizer of React UY and passionate about shaping impactful software solutions.'
 
 export const metadata: Metadata = {
   title: 'Santi Calvo',

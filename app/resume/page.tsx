@@ -6,7 +6,7 @@ import WidgetLanguages from '@/components/widget-languages'
 import { Metadata } from 'next'
 
 const title = 'Santi Calvo - Resume'
-const description = 'I am a Software Developer in Uruguay with more than 5 years of experience in a variety of domains. For the past few years, I\'ve focused on driving teams to deliver value to their customers.'
+const description = 'Explore my resume to learn about my education, professional experience, skills, and language proficiencies. Discover the journey and expertise that drive my passion for delivering impactful and innovative solutions.'
 
 export const metadata: Metadata = {
   title,

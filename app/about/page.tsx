@@ -7,7 +7,7 @@ import Experience from '@/components/experience'
 import { Metadata } from 'next'
 
 const title = 'Santi Calvo - About'
-const description = 'I am a Software Developer in Uruguay with more than 5 years of experience in a variety of domains. For the past few years, I\'ve focused on driving teams to deliver value to their customers.'
+const description = 'Discover Santi Calvo, a skilled software developer and Engineering Manager from Uruguay with 5+ years of experience. Specializing in leading teams, enhancing engineering processes, and delivering innovative solutions, Santi thrives in driving customer value. Connect to explore impactful projects and opportunities!'
 
 export const metadata: Metadata = {
   title,
