@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   description,
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/`,
   },
 }
 
@@ -56,7 +56,7 @@ export default async function Home() {
                   ))}
                 </div>
               </section>
-{/* 
+              {/* 
               <Talks /> */}
             </div>
           </div>
