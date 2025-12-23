@@ -13,7 +13,7 @@ export default function Education() {
               <Image src={EducationIcon} width={24} height={24} alt="Universidad de la República - Facultad de Ingeniería" />
             </div>
             <div className="pl-20 space-y-1">
-              <div className="text-xs text-slate-500 uppercase">March 2018 <span className="text-slate-400 dark:text-slate-600">·</span> June 2025 (expected)</div>
+              <div className="text-xs text-slate-500 uppercase">March 2018 <span className="text-slate-400 dark:text-slate-600">·</span> December 2026 (expected)</div>
               <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Bachelor of Engineering in Computer Science</div>
               <div className="text-sm font-medium text-slate-800 dark:text-slate-100">Universidad de la República - Facultad de Ingeniería</div>
             </div>

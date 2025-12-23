@@ -21,13 +21,13 @@ export default function ProjectCard({ item }: ItemProps) {
         <div className="grow">
           <div className="flex items-center justify-between space-x-2">
             <div className="h-10 w-10 flex items-center justify-center border border-slate-200 dark:border-slate-700 rounded-full mb-2">
-              <Image src={item.icon} width={18} alt={item.title} />
+              <Image src={item.icon} width={24} alt={item.title} />
             </div>
             {item.openSource && (
               <div className="text-xs inline-flex items-center font-medium bg-green-100 text-green-600 rounded-full text-center px-2 h-5">Open-Source</div>
             )}
           </div>
-          <div className="text-lg font-aspekta font-[650] mb-1">{ item.title }</div>
+          <div className="text-slate-800 dark:text-slate-100 text-lg font-aspekta font-[650] mb-1">{ item.title }</div>
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">{ item.excerpt }</p>
         </div>
         <div className="text-sky-500 flex justify-end">

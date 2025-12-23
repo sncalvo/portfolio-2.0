@@ -1,5 +1,7 @@
 import Education from '@/components/education'
 import Experience from '@/components/experience'
+import ProjectCard from '@/app/project-card'
+import LinkeaLogo from '@/public/images/linkea.webp'
 import WidgetSkills from '@/components/widget-skills'
 import WidgetLanguages from '@/components/widget-languages'
 
@@ -41,6 +43,21 @@ export default function Resume() {
             <div className="text-slate-500 dark:text-slate-400 space-y-12">
               <Education />
               <Experience />
+              
+              <div className="space-y-8">
+                <h2 className="h3 font-aspekta text-slate-800 dark:text-slate-100">Side Projects</h2>
+                <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+                  <ProjectCard item={{
+                    id: 1,
+                    icon: LinkeaLogo,
+                    slug: 'https://www.linkeapropiedades.com/',
+                    title: 'Linkea Propiedades',
+                    excerpt: 'Real estate platform connecting people with their dream homes. Features property listings for sale and rent, search, and contact management.',
+                    openSource: false,
+                  }} />
+                </div>
+              </div>
+
               {/* <Awards /> */}
               {/* <Recommendations /> */}
             </div>
