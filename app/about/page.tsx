@@ -7,7 +7,7 @@ import Experience from '@/components/experience'
 import { Metadata } from 'next'
 
 const title = 'Santi Calvo - About'
-const description = 'Discover Santi Calvo, a skilled software developer and Engineering Manager from Uruguay with 5+ years of experience. Specializing in leading teams, enhancing engineering processes, and delivering innovative solutions, Santi thrives in driving customer value. Connect to explore impactful projects and opportunities!'
+const description = 'Santi Calvo is an Engineering Manager and Full Stack Developer based in UK with over 6 years of experience. He specializes in building high-performing teams, optimizing engineering processes, and delivering scalable software solutions. Passionate about Ruby on Rails, React, and creating value for users.'
 
 export const metadata: Metadata = {
   title,
@@ -52,21 +52,30 @@ export default function About() {
               <div className="space-y-4">
                 <h2 className="h3 font-aspekta text-slate-800 dark:text-slate-100">Short Bio</h2>
                 <p>
-                  I'm a software developer in Uruguay with more than 5 years of experience in a variety of domains. For the past few years, I've focused on driving teams to deliver value to their customers.
+                  I'm a software developer and Engineering Manager based in UK, with over 6 years of experience spanning various industries. My passion lies in building software that not only solves problems but also delivers tangible value to users. Over the years, I've transitioned from hands-on coding to leading teams, where I now focus on empowering developers to do their best work.
+                </p>
+                <p>
+                  I believe in the power of collaboration, clean code, and user-centric design. Whether it's architecting a complex system or refining a team's workflow, I'm always looking for ways to improve the process and the product.
                 </p>
               </div>
               <div className="space-y-4">
                 <h2 className="h3 font-aspekta text-slate-800 dark:text-slate-100">Career</h2>
                 <p>
-                  As an Engineering Manager at <a className="font-medium text-sky-500 hover:underline" href="https://www.eagerworks.com" target="_blank">Eagerworks</a>, I take pride in leading and empowering dynamic teams of developers to consistently deliver innovative and impactful solutions that drive value for our customers.
+                  Currently, I serve as an Engineering Manager at <a className="font-medium text-sky-500 hover:underline" href="https://www.eagerworks.com" target="_blank">Eagerworks</a>, where I lead multiple dynamic teams. My goal is to foster an environment where innovation thrives and delivery is consistent.
                 </p>
                 <p>
-                  My role focuses on enhancing engineering processes, identifying areas for improvement, mentoring engineers, and promoting the adoption of best practices. Additionally, I manage risks, optimize resource allocation, and guide the development of future leaders.
+                  My day-to-day involves more than just technical oversight. I focus on:
                 </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Team Growth:</strong> Mentoring engineers and guiding future leaders.</li>
+                    <li><strong>Process Optimization:</strong> Refining agile workflows to remove bottlenecks.</li>
+                    <li><strong>Strategic Alignment:</strong> Ensuring technical decisions support business objectives.</li>
+                    <li><strong>Technical Excellence:</strong> Promoting best practices and code quality.</li>
+                </ul>
                 <p>
-                  I have gained extensive experience working across a diverse range of technologies and domains, including but not limited to:
-                  </p>
-                  <ul className="list-disc list-inside">
+                  Throughout my career, I've cultivated a deep understanding of a modern tech stack, allowing me to bridge the gap between technical constraints and product vision. My core technologies include:
+                </p>
+                  <ul className="list-disc list-inside ml-4 grid grid-cols-2 gap-2">
                     <li>TypeScript</li>
                     <li>Ruby on Rails</li>
                     <li>React</li>
@@ -75,7 +84,7 @@ export default function About() {
                     <li>Swift</li>
                   </ul>
                   <p>
-                  This versatility enables me to adapt to various project requirements and contribute effectively to multidisciplinary teams.
+                  This technical versatility, combined with my leadership experience, enables me to adapt to diverse project requirements and drive success in multidisciplinary environments.
                 </p>
               </div>
 
@@ -84,12 +93,10 @@ export default function About() {
               <div className="space-y-4">
                 <h2 className="h3 font-aspekta text-slate-800 dark:text-slate-100">Let's Connect</h2>
                 <p>
-                  I'm excited to connect with others via{' '}
+                  I'm always open to discussing new ideas, potential collaborations, or just chatting about the latest in tech. Feel free to reach out via{' '}
                   <a className="font-medium text-sky-500 hover:underline" href="mailto:mail@scalvo.dev">email</a>{' '}
-                  and{' '}
-                  <a className="font-medium text-sky-500 hover:underline" href="https://x.com/santi_c_dev" target="_blank">X</a>{' '}
-                  to chat about projects and ideas. Currently, I'm not taking on freelance projects, but I am open to hearing about potential opportunities,{' '}
-                  discussing them with you and then potentially collaborating if it's a good fit.
+                  or connect with me on{' '}
+                  <a className="font-medium text-sky-500 hover:underline" href="https://x.com/santi_c_dev" target="_blank">X</a>.
                 </p>
               </div>
             </div>

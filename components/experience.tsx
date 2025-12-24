@@ -31,7 +31,7 @@ export default function Experience() {
               <div className="text-xs text-slate-500 uppercase">February 2024 <span className="text-slate-400 dark:text-slate-600">·</span> Present</div>
               <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Engineering Manager</div>
               <div className="text-sm font-medium text-slate-800 dark:text-slate-100"><a href="https://www.eagerworks.com" target="_blank" className="underline hover:text-sky-500 transition-color">Eagerworks</a></div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">As an Engineering Manager at Eagerworks, I lead a team of developers to deliver value to our customers.</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Spearhead multiple teams of developers, aligning technical execution with business strategy. Responsible for talent development, resource allocation, and ensuring the delivery of high-quality software solutions for international clients.</div>
             </div>
           </div>
         </li>
@@ -45,7 +45,7 @@ export default function Experience() {
               <div className="text-xs text-slate-500 uppercase">January 2021 <span className="text-slate-400 dark:text-slate-600">·</span> January 2024</div>
               <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Technical Lead</div>
               <div className="text-sm font-medium text-slate-800 dark:text-slate-100"><a href="https://www.eagerworks.com" target="_blank" className="underline hover:text-sky-500 transition-color">Eagerworks</a></div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">In my role as a Technical Lead at Eagerworks, I was responsible for technical decisions and technical leadership of projects.</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Architected and led the development of complex web applications, ensuring scalability and code quality. Mentored developers, established engineering best practices, and served as the primary technical point of contact for clients.</div>
             </div>
           </div>
         </li>
@@ -59,7 +59,7 @@ export default function Experience() {
               <div className="text-xs text-slate-500 uppercase">October 2019 <span className="text-slate-400 dark:text-slate-600">·</span> December 2020</div>
               <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Full Stack Developer</div>
               <div className="text-sm font-medium text-slate-800 dark:text-slate-100"><a href="https://www.eagerworks.com" target="_blank" className="underline hover:text-sky-500 transition-color">Eagerworks</a></div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">In my role as a Full Stack Developer at Eagerworks, I was responsible for developing and maintaining various MVPs for clients.</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Built and shipped full-stack applications using Ruby on Rails and React. Collaborated closely with designers and product managers to define requirements and deliver robust MVPs for startups and established enterprises.</div>
             </div>
           </div>
         </li>
