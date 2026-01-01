@@ -29,9 +29,9 @@ export default function Experience() {
             </div>
             <div className="pl-20 space-y-1">
               <div className="text-xs text-slate-500 uppercase">February 2024 <span className="text-slate-400 dark:text-slate-600">·</span> Present</div>
-              <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Engineering Manager</div>
+              <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Senior Lead Engineer / Engineering Manager</div>
               <div className="text-sm font-medium text-slate-800 dark:text-slate-100"><a href="https://www.eagerworks.com" target="_blank" className="underline hover:text-sky-500 transition-color">Eagerworks</a></div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">Spearhead multiple teams of developers, aligning technical execution with business strategy. Responsible for talent development, resource allocation, and ensuring the delivery of high-quality software solutions for international clients.</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Leading the engineering organization through a period of rapid 10x growth, scaling the team from 10 to 100+ engineers. Responsible for establishing company-wide engineering standards, CI/CD best practices, and designing structured career ladders to maintain quality during expansion.</div>
             </div>
           </div>
         </li>
@@ -42,10 +42,10 @@ export default function Experience() {
               <Image src={EagerworksLogo} alt="Eagerworks" width={24} height={24} />
             </div>
             <div className="pl-20 space-y-1">
-              <div className="text-xs text-slate-500 uppercase">January 2021 <span className="text-slate-400 dark:text-slate-600">·</span> January 2024</div>
-              <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Technical Lead</div>
+              <div className="text-xs text-slate-500 uppercase">June 2021 <span className="text-slate-400 dark:text-slate-600">·</span> February 2024</div>
+              <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Technical Leader</div>
               <div className="text-sm font-medium text-slate-800 dark:text-slate-100"><a href="https://www.eagerworks.com" target="_blank" className="underline hover:text-sky-500 transition-color">Eagerworks</a></div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">Architected and led the development of complex web applications, ensuring scalability and code quality. Mentored developers, established engineering best practices, and served as the primary technical point of contact for clients.</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Architected and led the redesign of a critical fintech engine, optimizing the processing of 1M+ financial records with zero downtime. Spearheaded the adoption of Node.js, Next.js, and TypeScript, while implementing complex e-commerce features for retail clients.</div>
             </div>
           </div>
         </li>
@@ -56,10 +56,10 @@ export default function Experience() {
               <Image src={EagerworksLogo} alt="Eagerworks" width={24} height={24} />
             </div>
             <div className="pl-20 space-y-1">
-              <div className="text-xs text-slate-500 uppercase">October 2019 <span className="text-slate-400 dark:text-slate-600">·</span> December 2020</div>
-              <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Full Stack Developer</div>
+              <div className="text-xs text-slate-500 uppercase">October 2019 <span className="text-slate-400 dark:text-slate-600">·</span> June 2021</div>
+              <div className="font-aspekta font-[650] text-slate-800 dark:text-slate-100">Fullstack Developer</div>
               <div className="text-sm font-medium text-slate-800 dark:text-slate-100"><a href="https://www.eagerworks.com" target="_blank" className="underline hover:text-sky-500 transition-color">Eagerworks</a></div>
-              <div className="text-sm text-slate-500 dark:text-slate-400">Built and shipped full-stack applications using Ruby on Rails and React. Collaborated closely with designers and product managers to define requirements and deliver robust MVPs for startups and established enterprises.</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Delivered core features across the entire stack, including Web (React/Rails) and Native Mobile (Swift). Applied strong critical logic to translate product vision into high-quality technical implementations for international SaaS and retail clients.</div>
             </div>
           </div>
         </li>
